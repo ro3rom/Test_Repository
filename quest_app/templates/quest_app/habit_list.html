@@ -1,0 +1,7 @@
+<!-- habit_list.html -->
+<h1>習慣リスト</h1>
+<ul>
+  {% for habit in habits %}
+    <li>{{ habit.name }} - {{ habit.description }}</li>
+  {% endfor %}
+</ul>

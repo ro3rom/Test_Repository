@@ -1,0 +1,185 @@
+/* body全体のスタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f9ff; /* 水色のパステルカラー */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* ログインフォームのコンテナ */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* ログインフォームのボックス */
+.login-box {
+    background-color: #e0f7fa; /* パステルブルー */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+/* 見出しのスタイル */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #00796b; /* 落ち着いたグリーン */
+}
+
+/* 入力フィールドのスタイル */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #00796b;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* ボタンのスタイル */
+.btn {
+    background-color: #00bcd4; /* パステル水色 */
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0097a7; /* ボタンをホバーした時の色 */
+}
+
+/* フォーム全体のスタイル */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* 新規登録リンク */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #4682B4;  /* パステル水色 */
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ホーム画面のスタイル */
+
+/* 全体のスタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #AEE2FF, #B3E0FF); /* パステル水色のグラデーション */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* 中央寄せ */
+    align-items: center; /* 中央寄せ */
+    height: 100vh; /* 画面の高さいっぱいに */
+}
+
+/* ホーム画面のコンテナ */
+.home-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9); /* 白の半透明の背景 */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center; /* 文字を中央に */
+}
+
+/* ヘッダー */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #4682B4; /* パステル水色 */
+}
+
+/* メインコンテンツ */
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* ボタン */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #AEE2FF;  /* パステル水色 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4682B4; /* マウスオーバー時に濃い水色 */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.habit-list-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.habit-item {
+    background: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.habit-item h2 {
+    margin: 0;
+}
+
+.habit-item a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.habit-item a:hover {
+    text-decoration: underline;
+}
+

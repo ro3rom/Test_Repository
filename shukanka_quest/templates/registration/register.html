@@ -1,0 +1,19 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー登録</title>
+</head>
+<body>
+    <h1>ユーザー登録</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">ユーザー名:</label>
+        <input type="text" name="ユーザー名" id="username" required>
+        <button type="submit">登録</button>
+    </form>
+    
+</body>
+</html>

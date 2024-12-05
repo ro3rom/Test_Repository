@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム画面</title>
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="home-container">
+        <h1>ようこそ！</h1>
+        <p>ここでは、あなたの習慣を管理できます。</p>
+        <a href="{% url 'habit_list' %}" class="btn btn-primary">次に進む</a>
+    </div>
+</body>
+</html>

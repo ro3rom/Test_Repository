@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}習慣化クエスト{% endblock %}</title>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>習慣化クエスト</h1>
+        <nav>
+            <ul>
+                <li><a href="/">ホーム</a></li>
+                <li><a href="/quests/">クエスト一覧</a></li>
+                <li><a href="/admin/">管理画面</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>あなたの習慣リスト</h1>
+  <ul>
+    {% for habit in habits %}
+      <li>{{ habit.name }} - {{ habit.description }}</li>
+    {% empty %}
+      <li>習慣はまだ登録されていません。</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
