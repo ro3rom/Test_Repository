@@ -1,15 +1,21 @@
 from django.shortcuts import render, redirect
-from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.http import HttpRequest
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db import IntegrityError
+from quest_app.models import Habit
+from django.contrib.auth.views import LoginView
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
 
 # habit_list ビュー
+@login_required
 def habit_list(request):
-    # 必要なデータをテンプレートに渡す
-    return render(request, 'habit_list.html')  # habit_list.htmlのテンプレートを表示
+    habits = Habit.objects.filter(user=request.user)  # ログイン中のユーザーの習慣のみ取得
+    return render(request, 'habit_list.html', {'habits': habits})
 
 # ユーザー登録ビュー
 def register(request):
@@ -19,47 +25,55 @@ def register(request):
         password = request.POST['password']
         password_confirm = request.POST['password_confirm']
 
-        # パスワード確認
         if password != password_confirm:
             return render(request, 'registration/register.html', {'error': 'パスワードが一致しません'})
 
-        # ユーザー作成
-        user = User.objects.create_user(username=username, email=email, password=password)
-        user.save()
+        try:
+            user = User.objects.create_user(username=username, email=email, password=password)
+            user.save()
+        except IntegrityError:
+            return render(request, 'registration/register.html', {'error': 'ユーザー名またはメールアドレスがすでに登録されています'})
 
-        # 自動的にログインさせる
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
 
-        return redirect('home')  # ログイン後、ホーム画面にリダイレクト
+        return redirect('home')
 
     return render(request, 'registration/register.html')
 
 # ホームページビュー
+@login_required
 def home(request):
-    return render(request, 'home.html')  # home.htmlというテンプレートを表示
+    return render(request, 'home.html')
+
 
 # ログインビュー
 def login_view(request):
     if request.method == 'POST':
-        # フォームが送信された場合、ユーザー名とパスワードで認証を行う
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request, user)  # ユーザーをログインさせる
-            return redirect('home')  # ログイン後、ホームページにリダイレクト
+            login(request, user)
+            return redirect('home')
         else:
             return render(request, 'login.html', {'error': '無効なユーザー名またはパスワードです。'})
-    else:
-        return render(request, 'login.html')  # GETリクエストの場合はログインフォームを表示
+
+    return render(request, 'login.html')
 
 # 習慣追加ビュー
+@login_required
 def add_habit(request):
-    return render(request, 'add_habit.html')  # add_habit.htmlのテンプレートを表示
+    if request.method == 'POST':
+        name = request.POST['name']
+        description = request.POST['description']
+        Habit.objects.create(user=request.user, name=name, description=description)
+        return redirect('habit_list')
 
+    return render(request, 'add_habit.html')
+
+# トップページビュー
 def index(request):
-    # トップページを表示するためのビュー
-    return render(request, 'index.html')  # index.htmlというテンプレートを表示
+    return render(request, 'index.html')

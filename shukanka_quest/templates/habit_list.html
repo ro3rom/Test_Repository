@@ -1,12 +1,20 @@
-{% extends 'base_generic.html' %}
+<!-- habit_list.html -->
 
-{% block content %}
-  <h1>あなたの習慣リスト</h1>
-  <ul>
-    {% for habit in habits %}
-      <li>{{ habit.name }} - {{ habit.description }}</li>
-    {% empty %}
-      <li>習慣はまだ登録されていません。</li>
-    {% endfor %}
-  </ul>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クエスト</title>
+</head>
+<body>
+    <h2>クエスト一覧</h2>
+    <ul>
+        {% for habit in habits %}
+            <li>{{ habit.name }}</li>
+        {% empty %}
+            <li>クエストがありません。</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

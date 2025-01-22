@@ -3,6 +3,7 @@
 from django.db import models
 from django.utils.timezone import now
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 class Quest(models.Model):
@@ -25,3 +26,10 @@ class Habit(models.Model):
     def __str__(self):
         return self.name
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='shukanka_quest_profile')
+    points = models.IntegerField(default=0)
+    # その他必要なフィールドを追加
+
+    def __str__(self):
+        return self.user.username

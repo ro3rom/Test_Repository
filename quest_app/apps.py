@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
 class QuestAppConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
     name = 'quest_app'
 
+    def ready(self):
+        import quest_app.signals  # signals.pyをインポート

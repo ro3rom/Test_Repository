@@ -1,26 +1,20 @@
 <!-- registration/add_habit.html -->
 <!DOCTYPE html>
-<html>
+<!-- add_habit.html -->
+
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-    <title>習慣を追加</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クエスト追加</title>
 </head>
 <body>
-    <h1>習慣を追加</h1>
-
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-
+    <h2>新しいクエストを追加</h2>
     <form method="POST">
         {% csrf_token %}
-        <label for="name">習慣名:</label>
-        <input type="text" id="name" name="name" required><br><br>
-
-        <label for="description">習慣の説明:</label>
-        <textarea id="description" name="description" required></textarea><br><br>
-
-        <button type="submit">追加</button>
+        {{ form.as_p }}
+        <button type="submit">クエスト追加</button>
     </form>
-
 </body>
 </html>

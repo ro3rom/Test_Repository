@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>習慣化クエスト - ホーム</title>
+    {% load static %}  <!-- staticタグをロード -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="dark-mode"> <!-- ダークモードを自動適用 -->
+    <header>
+        <h1>習慣化クエスト</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'quest_app:quest_list' %}">クエスト</a></li>
+                <li><a href="{% url 'quest_app:exchange_points' %}">ポイントショップ</a></li>
+                <li><a href="{% url 'quest_app:reward_list' %}">報酬管理</a></li>
+                <li><a href="{% url 'quest_app:edit_user' %}">ユーザー管理</a></li>
+                <li><a href="{% url 'quest_app:logout' %}">ログアウト</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>ようこそ、{{ user.username }} さん</h2>
+        <p>習慣化クエストへようこそ！ あなたの進捗を確認して、クエストを達成しましょう。</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 習慣化クエスト</p>
+    </footer>
+</body>
+</html>

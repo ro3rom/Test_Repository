@@ -1,0 +1,35 @@
+<h1>クエスト一覧</h1>
+
+<!-- クエスト追加フォーム -->
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">クエストを追加</button>
+</form>
+
+<!-- クエスト一覧 -->
+<ul>
+  {% for quest in quests %}
+    <li>
+      <h3>{{ quest.title }}</h3>
+      <p>{{ quest.description }}</p>
+      <p>ポイント: {{ quest.points }}ポイント</p>
+      
+      {% if quest.is_completed %}
+        <p>クエストは完了しました</p>
+      {% else %}
+        <!-- クエスト完了ボタン -->
+        <a href="{% url 'quest_app:complete_quest' quest.id %}">完了</a>
+      {% endif %}
+      
+      <!-- クエスト編集と削除 -->
+      <a href="{% url 'quest_app:edit_quest' quest.id %}">編集</a>
+      <a href="{% url 'quest_app:delete_quest' quest.id %}">削除</a>
+    </li>
+  {% endfor %}
+</ul>
+
+<!-- ホーム画面に戻るボタン -->
+<a href="{% url 'home' %}">
+  <button class="btn">ホームに戻る</button>
+</a>

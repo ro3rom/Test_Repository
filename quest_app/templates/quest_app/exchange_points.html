@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポイント交換</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .points {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .reward {
+            margin: 20px 0;
+        }
+
+        .reward-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background: #eaf4fc;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .reward-card p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .reward-card button {
+            padding: 6px 12px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            background: #007BFF;
+            cursor: pointer;
+        }
+
+        .reward-card button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .navigation-buttons {
+            margin-top: 20px;
+        }
+
+        .navigation-buttons a {
+            margin: 10px;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .navigation-buttons a:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ポイント交換</h1>
+<p>現在のポイント: {{ user_points }}</p>
+
+<h2>交換可能な報酬</h2>
+<ul>
+    {% for reward in rewards %}
+        <li>
+            <strong>{{ reward.name }}</strong> - 必要ポイント: {{ reward.points_required }} 
+            {% if user_points >= reward.points_required %}
+                <form method="post" action="{% url 'quest_app:exchange_points' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="reward" value="{{ reward.id }}">
+                    <button type="submit">交換</button>
+                </form>
+            {% else %}
+                <span>ポイント不足</span>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>報酬が登録されていません。</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
+
+<!-- ナビゲーションボタン -->
+<div class="navigation-buttons">
+    <a href="{% url 'quest_app:reward_list' %}">報酬管理</a>
+    <a href="{% url 'quest_app:home' %}">ホームに戻る</a>
+</div>
+

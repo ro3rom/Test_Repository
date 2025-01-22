@@ -14,24 +14,30 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# shukanka_quest/urls.py
 from django.contrib import admin
 from django.urls import path, include
-from shukanka_quest import views
+from quest_app import views  # quest_app.views をインポート
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import CustomLoginView
+from django.contrib.auth.views import LoginView
+
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),    
-    path('quests/', include('quest_app.urls')),  # quest_appのURL設定をインクルード    path('login/', auth_views.LoginView.as_view(), name='login'),  # ログインページ
-    path('', views.home, name='home'),  # ルートURLでhomeビューを表示
-    path('register/', views.register, name='register'),  # 'register/' URLに対応するビューを設定
-    path('login/', views.login_view, name='login'),  # ログイン画面
-    path('habit_list/', views.habit_list, name='habit_list'),  # 新規ページ（習慣一覧）
-    path('add-habit/', views.add_habit, name='add_habit'),  # 名前付きパターンを追加
-    path('', include('quest_app.urls')), 
+    path('', views.index, name='index'),  # ホームページ (仮トップ)
+    path('register/', views.register_view, name='register'),
+    path('home/', views.home, name='home'),  # ホーム画面
+    path('habit_list/', views.habit_list, name='habit_list'),  # 習慣リスト
+    path('add_habit/', views.add_habit, name='add_habit'),  # 習慣追加
+    path('quest_list/', views.quest_list, name='quest_list'),  # クエスト一覧
+    path('exchange_points/', views.exchange_points, name='exchange_points'),  # ポイント交換
+    path('initialize_points/', views.initialize_points, name='initialize_points'),  # ポイント初期化
+    path('welcome/', views.welcome, name='welcome'),  # Welcome画面
+    path('quest_app/', include('quest_app.urls')),  # quest_app のURLをプロジェクトに紐付け
+    path('admin/', admin.site.urls),  # ここで admin のURLが設定
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),  # ログアウトURLを追加
+    path('edit_user/', views.edit_user, name='edit_user'),
+    path('login/', LoginView.as_view(), name='login'),
 ]
-
-
-
-
-
